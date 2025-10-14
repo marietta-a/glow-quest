@@ -1,0 +1,174 @@
+import 'dart:ui';
+
+import 'package:flame/components.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/get_instance.dart';
+import 'package:glow_quest/core/enums/enum.dart';
+import 'package:glow_quest/domain/models/implementation/heroes/heroes/quest_one_hero.dart';
+import 'package:glow_quest/domain/models/interface/components/tappable_hero_component.dart';
+import 'package:glow_quest/presentation/quest_one/quest_one_base.dart';
+import 'package:glow_quest/presentation/quest_one/quest_one_base_view_model.dart';
+
+class QuestOneBaseGame extends QuestOneBase
+{
+  late QuestOneBaseViewModel viewModel = Get.find<QuestOneBaseViewModel>();
+
+  /// default sprite size
+  final Vector2 spriteSize = Vector2.all(100);
+
+  // Spawner timer
+  final Timer _timer = Timer(1.0, repeat: true); 
+  late double screenWidth = 0;
+  late double spawnableWidth = 0;
+
+  @override
+  Future<void> onLoad() async {
+    super.onLoad();
+    _timer.onTick = spawnObject;
+  }// Spawns an item every 1.5 seconds
+
+
+  @override
+  Color backgroundColor() {
+    return Colors.black;
+  }
+
+  @override
+  void update(double dt) {
+    _timer.update(dt); // Update the spawner timer on each frame
+    super.update(dt);
+
+
+    allGameHeroes = children.whereType<TappableHeroComponent>()
+                    .map((b) => updateLocation(dt, b)) /// update update hero's position
+                    .toList();
+
+    removeHeroesInactiveHeroes();
+  
+    checkGameState();
+  }
+
+  List<TappableHeroComponent> getInActiveHeroes(){
+    return allGameHeroes.where((b) => b.position.y >= size.y)
+                 .map((b) => decreaseScoreForLostHero(b))
+                 .toList();
+  }
+
+
+  void removeHeroesInactiveHeroes() {
+      removeAll(getInActiveHeroes());
+  }
+
+  TappableHeroComponent decreaseScoreForLostHero(TappableHeroComponent hero){
+    if(hero.heroType == HeroType.hero){
+      viewModel.decreaseScore(1);
+    }
+    return hero;
+  }
+  
+  
+  Future<void> spawnObject() async {
+    await addHero();
+    await addDistractor();
+    await addTerminator();
+
+  }
+  
+
+  
+  Future<void> addHero() async {
+    add(QuestOneHero(
+        gameHero: viewModel.hero, 
+        onSelect: onTapDown, 
+        heroType: HeroType.hero, 
+      )
+      ..size = viewModel.hero.size
+    );
+  }
+  
+  Future<void> addDistractor() async {
+    if(heroes.length >= 3){
+      add(QuestOneHero(
+          gameHero: viewModel.distractor, 
+          onSelect: onTapDown, 
+          heroType: HeroType.distractor, 
+        )
+        ..size = viewModel.hero.size
+      );
+    }
+  }
+  
+  Future<void> addTerminator() async {
+    if(heroes.length >= 5){
+      add(QuestOneHero(
+          gameHero: viewModel.terminator, 
+          onSelect: onTapDown, 
+          heroType: HeroType.terminator, 
+        )
+        ..size = viewModel.hero.size
+        ..anchor = Anchor.center
+      );
+    }
+  }
+
+
+  // --- Public methods for components to call ---
+  @override
+  void increaseScore(int points) {
+    viewModel.increaseScore(points);
+  }
+
+  @override
+  void decreaseScore(int penalty) {
+    viewModel.decreaseScore(penalty);
+  }
+
+  @override
+  void endGame(String message) {
+    viewModel.endGame(message);
+    super.endGame(message);
+  }
+
+  @override
+  void winGame(String message) {
+    viewModel.winGame(message);
+    super.winGame(message);
+  }
+  
+  void updateGameState(TappableHeroComponent hero) {
+    switch(hero.heroType){
+      case HeroType.hero:
+        viewModel.increaseScore(incrementValue);
+      break;
+      case HeroType.avatar:
+      
+        break;
+      case HeroType.distractor:
+        viewModel.decreaseScore(deductionValue);
+      break;
+      case HeroType.terminator:
+        endGame("You selected a harzardouse item");
+      break;
+    }
+  }
+  
+  void checkForGameOver() {
+    if (viewModel.score.value! < 0  ) {
+      endGame(viewModel.gameOverMessage.value ?? "Game Over");
+    }
+  }
+  
+  void checkForGameWon() {
+    if (viewModel.score.value! >=  100  ) {
+      winGame(viewModel.gameWonMessage.value ?? "Game Won");
+    }
+  }
+  
+  void checkGameState() {
+    checkForGameOver();
+    checkForGameWon();
+  }
+  
+
+}
