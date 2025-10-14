@@ -12,7 +12,6 @@ import 'package:glow_quest/presentation/quest_one/quest_one_base_view_model.dart
 
 class QuestOneBaseGame extends QuestOneBase
 {
-  List<TappableHeroComponent> allGameHeroes = [];
   late QuestOneBaseViewModel viewModel = Get.find<QuestOneBaseViewModel>();
 
   /// default sprite size
@@ -102,7 +101,7 @@ class QuestOneBaseGame extends QuestOneBase
   }
   
   Future<void> addTerminator() async {
-    if(heroes.length >= 3){
+    if(distractors.length >= 2){
       add(QuestOneHero(
           gameHero: viewModel.terminator, 
           onSelect: onTapDown, 
