@@ -79,6 +79,11 @@ abstract class QuestOneBase extends FlameGame with TapCallbacks
       hero.position.y += velocity.y * dt;
 
       hero.update(dt);
+      
+      if(hero.position.y >= size.y){
+        heroesToRemove.add(hero);
+      }
+
       return hero;
   }
 
@@ -99,6 +104,9 @@ abstract class QuestOneBase extends FlameGame with TapCallbacks
 
   /// [allGameHeroes] is a list containing all hero components in the game, including point boosters, distractors, and terminators.
   List<TappableHeroComponent> allGameHeroes = [];
+
+  /// [heroesToRemove] is a list of all heroes out of the game viewport
+  List<TappableHeroComponent> heroesToRemove = [];
 
   ///[getRandomPosition] Returns a random position within the allowed boundaries for the game.
   /// Useful for spawning objects or characters at unpredictable locations.

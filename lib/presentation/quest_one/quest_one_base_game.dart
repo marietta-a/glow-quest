@@ -12,6 +12,7 @@ import 'package:glow_quest/presentation/quest_one/quest_one_base_view_model.dart
 
 class QuestOneBaseGame extends QuestOneBase
 {
+  List<TappableHeroComponent> allGameHeroes = [];
   late QuestOneBaseViewModel viewModel = Get.find<QuestOneBaseViewModel>();
 
   /// default sprite size
@@ -25,6 +26,7 @@ class QuestOneBaseGame extends QuestOneBase
   @override
   Future<void> onLoad() async {
     super.onLoad();
+
     _timer.onTick = spawnObject;
   }// Spawns an item every 1.5 seconds
 
@@ -36,9 +38,8 @@ class QuestOneBaseGame extends QuestOneBase
 
   @override
   void update(double dt) {
-    _timer.update(dt); // Update the spawner timer on each frame
     super.update(dt);
-
+    _timer.update(dt); // Update the spawner timer on each frame
 
     allGameHeroes = children.whereType<TappableHeroComponent>()
                     .map((b) => updateLocation(dt, b)) /// update update hero's position
@@ -57,7 +58,9 @@ class QuestOneBaseGame extends QuestOneBase
 
 
   void removeHeroesInactiveHeroes() {
+    if(getInActiveHeroes().isNotEmpty){
       removeAll(getInActiveHeroes());
+    }
   }
 
   TappableHeroComponent decreaseScoreForLostHero(TappableHeroComponent hero){
@@ -72,7 +75,6 @@ class QuestOneBaseGame extends QuestOneBase
     await addHero();
     await addDistractor();
     await addTerminator();
-
   }
   
 
@@ -88,7 +90,7 @@ class QuestOneBaseGame extends QuestOneBase
   }
   
   Future<void> addDistractor() async {
-    if(heroes.length >= 3){
+    if(heroes.length >= 2){
       add(QuestOneHero(
           gameHero: viewModel.distractor, 
           onSelect: onTapDown, 
@@ -100,7 +102,7 @@ class QuestOneBaseGame extends QuestOneBase
   }
   
   Future<void> addTerminator() async {
-    if(heroes.length >= 5){
+    if(heroes.length >= 3){
       add(QuestOneHero(
           gameHero: viewModel.terminator, 
           onSelect: onTapDown, 
