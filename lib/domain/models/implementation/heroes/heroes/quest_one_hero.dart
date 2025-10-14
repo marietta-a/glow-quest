@@ -11,7 +11,7 @@ class QuestOneHero extends TappableHeroComponent with HasGameReference<QuestOneB
   
   @override
   Future<void> onLoad() async {
-    spawnHero();
+    await spawnHero();
   }
 
   /// updated the game's state and
