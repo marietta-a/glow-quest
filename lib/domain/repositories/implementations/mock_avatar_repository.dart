@@ -1,9 +1,9 @@
 import 'package:glow_quest/core/enums/enum.dart';
 import 'package:glow_quest/core/size_constants.dart';
 import 'package:glow_quest/domain/models/hero_models/game_hero_model.dart';
-import 'package:glow_quest/domain/repositories/interfaces/i_avatar_repository.dart';
+import 'package:glow_quest/domain/repositories/interfaces/i_game_hero_repository.dart';
 
-class MockAvatarRepository implements IAvatarRepository {
+class MockAvatarRepository implements IGameHeroRepository {
   @override
   List<GameHeroModel> getGameHeroes() {
     return[

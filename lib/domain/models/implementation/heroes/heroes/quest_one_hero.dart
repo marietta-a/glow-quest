@@ -1,6 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
-import 'package:glow_quest/domain/models/interface/components/tappable_hero_component.dart';
+import 'package:glow_quest/domain/components/tappable_hero_component.dart';
 import 'package:glow_quest/presentation/quest_one/quest_one_base_game.dart';
 
 class QuestOneHero extends TappableHeroComponent with HasGameReference<QuestOneBaseGame> {
@@ -14,11 +14,15 @@ class QuestOneHero extends TappableHeroComponent with HasGameReference<QuestOneB
     await spawnHero();
   }
 
+  
+
   /// updated the game's state and
   /// remove hero from parent
   @override
   void onTapDown(TapDownEvent event) {
     game.updateGameState(_component);
+    
+    
     removeFromParent();
   }
 

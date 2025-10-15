@@ -2,9 +2,9 @@
 import 'package:glow_quest/core/enums/enum.dart';
 import 'package:glow_quest/core/size_constants.dart';
 import 'package:glow_quest/domain/models/hero_models/game_hero_model.dart';
-import 'package:glow_quest/domain/repositories/interfaces/i_distractor_item_repository.dart';
+import 'package:glow_quest/domain/repositories/interfaces/i_game_hero_repository.dart';
 
-class MockDistractorItemRepository implements IDistractorItemRepository {
+class MockDistractorItemRepository implements IGameHeroRepository {
   @override
   List<GameHeroModel> getGameHeroes() {
     return [

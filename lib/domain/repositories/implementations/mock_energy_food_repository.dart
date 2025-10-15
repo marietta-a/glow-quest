@@ -2,9 +2,9 @@ import 'package:flame/input.dart';
 import 'package:glow_quest/core/enums/enum.dart';
 import 'package:glow_quest/core/size_constants.dart';
 import 'package:glow_quest/domain/models/hero_models/game_hero_model.dart';
-import 'package:glow_quest/domain/repositories/interfaces/i_energy_food_repository.dart';
+import 'package:glow_quest/domain/repositories/interfaces/i_game_hero_repository.dart';
 
-class MockEnergyFoodRepository implements IEnergyFoodRepository {
+class MockEnergyFoodRepository implements IGameHeroRepository {
 
   @override
   List<GameHeroModel> getGameHeroes() {
