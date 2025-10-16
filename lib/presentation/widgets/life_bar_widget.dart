@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glow_quest/core/color_constants.dart';
 
 /// A widget that displays a life bar with dynamic colors based on its value.
 ///
@@ -30,13 +31,13 @@ class LifeBarWidget extends StatelessWidget {
   /// A helper method to determine the bar's color based on the life percentage.
   Color _getBarColor(double percentage) {
     if (percentage < 0.25) {
-      return Colors.redAccent; // < 25%
+      return red; // < 25%
     } else if (percentage < 0.50) {
       return Colors.orangeAccent; // 25% to < 50%
     } else if (percentage < 0.75) {
       return Colors.yellowAccent; // 50% to < 75%
     } else {
-      return Colors.greenAccent; // 75% upwards
+      return green; // 75% upwards
     }
   }
 

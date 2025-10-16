@@ -20,6 +20,9 @@ abstract class QuestOneBase extends FlameGame with TapCallbacks
   /// [incrementValue] is the default value added when the player earns a reward
   int get incrementValue => 5;
 
+  /// [winningValue] is the default score for game win when achieved
+  int get winningValue => 100;
+
 
   
   ///[increaseScore] method increases game score
