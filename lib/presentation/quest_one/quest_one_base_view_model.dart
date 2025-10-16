@@ -25,6 +25,7 @@ abstract class QuestOneBaseViewModel extends GetxController{
 
   // --- Reactive State Variables (for Flutter UI) ---
   final score = Rxn<int>();
+  final winningScore = Rxn<int>();
 
   /// [gameOverMessage] is null when the game is ongoing, and contains a message when the game is over
   final gameOverMessage = Rxn<String>(); // Nullable String
@@ -68,7 +69,7 @@ abstract class QuestOneBaseViewModel extends GetxController{
     if (score.value != null) {
       score.value = score.value! - penalty;
     } else {
-      score.value = 0 -penalty;
+      score.value = 0 - penalty;
     }
   }
 

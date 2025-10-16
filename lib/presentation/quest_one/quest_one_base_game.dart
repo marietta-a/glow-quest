@@ -24,7 +24,7 @@ class QuestOneBaseGame extends QuestOneBase
   @override
   Future<void> onLoad() async {
     super.onLoad();
-
+    viewModel.winningScore.value = winningValue;
     _timer.onTick = spawnObject;
   }// Spawns an item every 1.5 seconds
 
@@ -47,6 +47,9 @@ class QuestOneBaseGame extends QuestOneBase
   
     checkGameState();
   }
+
+  @override
+  int get winningValue => 250;
 
   List<TappableHeroComponent> getInActiveHeroes(){
     return allGameHeroes.where((b) => b.position.y >= size.y)
@@ -160,7 +163,7 @@ class QuestOneBaseGame extends QuestOneBase
   }
   
   void checkForGameWon() {
-    if (viewModel.score.value! >=  100  ) {
+    if (viewModel.score.value! >=  winningValue  ) {
       winGame(viewModel.gameWonMessage.value ?? "Game Won");
     }
   }

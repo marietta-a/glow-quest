@@ -33,7 +33,7 @@ class QuestOneView extends GetView<EnergyBoostViewModel> {
                 // Obx listens to reactive variables in your ViewModel
                 child: Obx(() => LifeBarWidget(
                   currentLife: controller.score.value as double,
-                  maxLife: 100, 
+                  maxLife: controller.winningScore.value as double, 
                   width: lifeBarWidth,
                 )
                 //  Text(
