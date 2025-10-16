@@ -49,7 +49,7 @@ class QuestOneBaseGame extends QuestOneBase
   }
 
   @override
-  int get winningValue => 250;
+  int get winningValue => 100;
 
   List<TappableHeroComponent> getInActiveHeroes(){
     return allGameHeroes.where((b) => b.position.y >= size.y)

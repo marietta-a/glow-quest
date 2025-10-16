@@ -7,10 +7,10 @@ class QuestNodeWidget extends StatelessWidget {
   final VoidCallback onTap;
 
   const QuestNodeWidget({
-    Key? key,
+    super.key,
     required this.quest,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
