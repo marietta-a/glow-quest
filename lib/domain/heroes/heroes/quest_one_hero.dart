@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:glow_quest/domain/components/tappable_hero_component.dart';
@@ -39,8 +38,9 @@ class QuestOneHero extends TappableHeroComponent with HasGameReference<QuestOneB
     add(
       BurstEffect(
         controller: GEffectController(duration: 0.3),
-        endScale: 2.0,
+        // endScale: 2.0,
         particleCount: 10,
+        particleSize: size / 4,
         onComplete: () {  
           removeFromParent();
         },
