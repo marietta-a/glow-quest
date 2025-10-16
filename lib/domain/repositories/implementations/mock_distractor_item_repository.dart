@@ -8,13 +8,13 @@ class MockDistractorItemRepository implements IGameHeroRepository {
   @override
   List<GameHeroModel> getGameHeroes() {
     return [
-      GameHeroModel(
-        id: "01", 
-        path: "heroes/distractors/candy.png",
-        name: "candy", 
-        heroType: HeroType.distractor,
-        size: roundedSize,
-      ),
+      // GameHeroModel(
+      //   id: "01", 
+      //   path: "heroes/distractors/candy.png",
+      //   name: "candy", 
+      //   heroType: HeroType.distractor,
+      //   size: roundedSize,
+      // ),
       GameHeroModel(
         id: "02", 
         path: "heroes/distractors/cheese_burger.png",

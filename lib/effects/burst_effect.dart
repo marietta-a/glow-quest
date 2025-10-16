@@ -7,8 +7,9 @@ import 'package:glow_quest/effects/mixins/g_effect_target.dart';
 import 'package:glow_quest/particles/g_particle.dart';
 
 class BurstEffect extends GBaseEffect with GEffectTarget<PositionComponent> {
-  final double endScale;
+  // double endScale;
   final int particleCount;
+  Vector2? particleSize; 
   final Function() onComplete;
 
   late double _startScale;
@@ -18,8 +19,9 @@ class BurstEffect extends GBaseEffect with GEffectTarget<PositionComponent> {
 
   BurstEffect({
     required GEffectController controller,
-    required this.endScale,
+    // required this.endScale,
     required this.onComplete,
+    this.particleSize,
     this.particleCount = 10,
   }) : super(controller);
 
@@ -64,7 +66,7 @@ class BurstEffect extends GBaseEffect with GEffectTarget<PositionComponent> {
         }
       })
       // ..position = target.position
-      ..size = target.size / 4
+      ..size = particleSize ?? target.size / 4
       ..shouldRemoveOnComplete = true;
       
 
