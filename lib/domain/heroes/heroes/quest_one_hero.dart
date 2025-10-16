@@ -1,8 +1,8 @@
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:glow_quest/core/enums/enum.dart';
-import 'package:glow_quest/domain/components/point_component.dart';
-import 'package:glow_quest/domain/components/tappable_hero_component.dart';
+import 'package:glow_quest/components/point_component.dart';
+import 'package:glow_quest/components/tappable_hero_component.dart';
 import 'package:glow_quest/effects/burst_effect.dart'; // We will use this
 import 'package:glow_quest/effects/controllers/g_effect_controller.dart';
 import 'package:glow_quest/presentation/quest_one/quest_one_base_game.dart';

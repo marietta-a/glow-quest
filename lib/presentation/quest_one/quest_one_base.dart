@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:glow_quest/core/enums/enum.dart';
-import 'package:glow_quest/domain/components/tappable_hero_component.dart';
+import 'package:glow_quest/components/tappable_hero_component.dart';
 
 abstract class QuestOneBase extends FlameGame with TapCallbacks 
 {

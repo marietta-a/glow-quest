@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flutter/material.dart';
+import 'package:glow_quest/core/color_constants.dart';
 
 class PointComponent extends PositionComponent {
   final bool pointGained;
@@ -14,7 +15,7 @@ class PointComponent extends PositionComponent {
 
   @override
   Future<void> onLoad() async {
-    final color = pointGained ? const Color.fromARGB(255, 1, 92, 4) : const Color.fromARGB(255, 178, 15, 4);
+    final color = pointGained ? green : red;
     final text = pointGained ? '+$point' : '-$point';
 
     final circle = CircleComponent(

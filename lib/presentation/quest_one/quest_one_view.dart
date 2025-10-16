@@ -4,8 +4,10 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:glow_quest/components/life_bar_component.dart';
 import 'package:glow_quest/presentation/quest_one/energy_boost/energy_boost_game.dart';
 import 'package:glow_quest/presentation/quest_one/energy_boost/energy_boost_view_model.dart';
+import 'package:glow_quest/presentation/widgets/life_bar_widget.dart';
 
 class QuestOneView extends GetView<EnergyBoostViewModel> {
   const QuestOneView({super.key});
@@ -14,6 +16,7 @@ class QuestOneView extends GetView<EnergyBoostViewModel> {
   Widget build(BuildContext context) {
     // We create the instance of our game here.
     final game = EnergyBoostGame();
+    final lifeBarWidth = MediaQuery.of(context).size.width / 10;
 
     return Scaffold(
       // The GameWidget is the bridge between Flutter and Flame.
@@ -28,14 +31,20 @@ class QuestOneView extends GetView<EnergyBoostViewModel> {
               child: Padding(
                 padding: const EdgeInsets.all(32.0),
                 // Obx listens to reactive variables in your ViewModel
-                child: Obx(() => Text(
-                      'Score: ${controller.score.value}',
-                      style: const TextStyle(
-                        fontSize: 24,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )),
+                child: Obx(() => LifeBarWidget(
+                  currentLife: controller.score.value as double,
+                  maxLife: 100, 
+                  width: lifeBarWidth,
+                )
+                //  Text(
+                //       'Score: ${controller.score.value}',
+                //       style: const TextStyle(
+                //         fontSize: 24,
+                //         color: Colors.white,
+                //         fontWeight: FontWeight.bold,
+                //       ),
+                //     )
+                ),
               ),
             );
           },

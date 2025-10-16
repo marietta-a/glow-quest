@@ -1,7 +1,7 @@
 
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
-import 'package:glow_quest/domain/components/tappable_hero_component.dart';
+import 'package:glow_quest/components/tappable_hero_component.dart';
 
 class TappableHeroBackgroundComponent extends TappableHeroComponent{
   TappableHeroBackgroundComponent({required super.gameHero, required super.heroType, required super.onSelect});
