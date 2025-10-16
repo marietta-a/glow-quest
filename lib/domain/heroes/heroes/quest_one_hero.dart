@@ -1,5 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
+import 'package:glow_quest/core/enums/enum.dart';
+import 'package:glow_quest/domain/components/point_component.dart';
 import 'package:glow_quest/domain/components/tappable_hero_component.dart';
 import 'package:glow_quest/effects/burst_effect.dart'; // We will use this
 import 'package:glow_quest/effects/controllers/g_effect_controller.dart';
@@ -26,15 +28,13 @@ class QuestOneHero extends TappableHeroComponent with HasGameReference<QuestOneB
 
   @override
   void onTapDown(TapDownEvent event) {
-    // Prevent the player from tapping a hero that's already bursting.
+    
     if (_isBeingRemoved) return;
     _isBeingRemoved = true;
 
-    // 1. Update the game state immediately.
-    // We pass 'this' because this component IS the hero that was tapped.
     game.updateGameState(this);
 
-    // 2. Add the BurstEffect directly to THIS component.
+    final shouldAddPoint = [HeroType.hero, HeroType.distractor].contains(heroType);
     add(
       BurstEffect(
         controller: GEffectController(duration: 0.3),
@@ -46,5 +46,13 @@ class QuestOneHero extends TappableHeroComponent with HasGameReference<QuestOneB
         },
       ),
     );
+    if(shouldAddPoint){
+      add(
+        PointComponent(
+          pointGained: heroType == HeroType.hero, 
+          point: heroType == HeroType.hero ? game.incrementValue : game.deductionValue, 
+        )..size = Vector2(10, 10)
+      );
+    }
   }
 }
