@@ -9,12 +9,12 @@ import 'package:glow_quest/domain/models/interface/factories/hero_factory/i_term
 import 'package:glow_quest/domain/models/interface/factories/hero_factory/i_healthy_food_hero_factory.dart';
 import 'package:glow_quest/domain/models/interface/heroes/i_game_hero.dart';
 
-abstract class QuestOneBaseViewModel extends GetxController{
+abstract class QuestOneBaseController extends GetxController{
  final IDistractorHeroFactory _distractorFactory;
  final ITerminatorHeroFactory _terminatorFactory;
  final IHealthyFoodHeroFactory _heroFactory;
 
-  QuestOneBaseViewModel({
+  QuestOneBaseController({
     required IHealthyFoodHeroFactory heroFactory,
     required ITerminatorHeroFactory terminatorFactory, 
     required IDistractorHeroFactory distractorFactory,})

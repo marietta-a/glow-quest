@@ -4,12 +4,11 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
-import 'package:glow_quest/components/life_bar_component.dart';
 import 'package:glow_quest/presentation/quest_one/energy_boost/energy_boost_game.dart';
-import 'package:glow_quest/presentation/quest_one/energy_boost/energy_boost_view_model.dart';
+import 'package:glow_quest/presentation/quest_one/energy_boost/energy_boost_controller.dart';
 import 'package:glow_quest/presentation/widgets/life_bar_widget.dart';
 
-class QuestOneView extends GetView<EnergyBoostViewModel> {
+class QuestOneView extends GetView<EnergyBoostController> {
   const QuestOneView({super.key});
 
   @override
@@ -32,8 +31,8 @@ class QuestOneView extends GetView<EnergyBoostViewModel> {
                 padding: const EdgeInsets.all(32.0),
                 // Obx listens to reactive variables in your ViewModel
                 child: Obx(() => LifeBarWidget(
-                  currentLife: controller.score.value as double,
-                  maxLife: controller.winningScore.value as double, 
+                  currentLife: controller.score.value?.toDouble() ?? 0.0,
+                  maxLife: controller.winningScore.value?.toDouble() ?? 100.0, 
                   width: lifeBarWidth,
                 )
                 //  Text(

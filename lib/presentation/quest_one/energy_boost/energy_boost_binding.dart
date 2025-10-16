@@ -4,7 +4,7 @@ import 'package:glow_quest/domain/models/implementation/factories/heroes/distrac
 import 'package:glow_quest/domain/models/implementation/factories/heroes/terminator_hero_factory.dart';
 import 'package:glow_quest/domain/models/implementation/factories/heroes/healthy_food_hero_factory.dart';
 import 'package:glow_quest/domain/models/interface/factories/hero_factory/i_healthy_food_hero_factory.dart';
-import 'package:glow_quest/presentation/quest_one/energy_boost/energy_boost_view_model.dart';
+import 'package:glow_quest/presentation/quest_one/energy_boost/energy_boost_controller.dart';
 import 'package:glow_quest/presentation/quest_one/quests_base_binding.dart';
 
 class EnergyBoostBinding extends QuestsBinding{
@@ -12,7 +12,7 @@ class EnergyBoostBinding extends QuestsBinding{
   void dependencies() {
     super.dependencies();
     Get.lazyPut<IHealthyFoodHeroFactory>(() => HealthyFoodHeroFactory());
-    Get.lazyPut(() => EnergyBoostViewModel(
+    Get.lazyPut(() => EnergyBoostController(
       heroFactory: HealthyFoodHeroFactory(), 
       terminatorFactory: TerminatorHeroFactory(), 
       distractorFactory: DistractorHeroFactory())
