@@ -4,7 +4,7 @@ import 'package:glow_quest/presentation/quest_one/quest_one_base_view_model.dart
 
 class EnergyBoostViewModel  extends QuestOneBaseViewModel{
  
-  IHealthyFoodHeroFactory _heroFactory;
+  final IHealthyFoodHeroFactory _heroFactory;
 
   EnergyBoostViewModel({
     required super.heroFactory, 

@@ -1,7 +1,7 @@
 import 'package:glow_quest/core/enums/enum.dart';
 import 'package:glow_quest/domain/models/hero_models/game_hero_model.dart';
-import 'package:glow_quest/domain/models/implementation/heroes/avatars/avatar_hero.dart';
-import 'package:glow_quest/domain/models/implementation/heroes/terminators/harzardous_item_hero.dart';
+import 'package:glow_quest/domain/heroes/avatars/avatar_hero.dart';
+import 'package:glow_quest/domain/heroes/terminators/harzardous_item_hero.dart';
 import 'package:glow_quest/domain/models/interface/factories/hero_factory/i_game_hero_factory.dart';
 import 'package:glow_quest/domain/models/interface/heroes/i_game_hero.dart';
 import 'package:glow_quest/domain/repositories/implementations/mock_avatar_repository.dart';

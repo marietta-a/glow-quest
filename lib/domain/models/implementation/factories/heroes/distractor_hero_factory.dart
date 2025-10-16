@@ -1,5 +1,5 @@
 import 'package:glow_quest/core/enums/enum.dart';
-import 'package:glow_quest/domain/models/implementation/heroes/distractors/distractor_hero.dart';
+import 'package:glow_quest/domain/heroes/distractors/distractor_hero.dart';
 import 'package:glow_quest/domain/models/interface/factories/hero_factory/i_distractor_hero_factory.dart';
 import 'package:glow_quest/domain/models/interface/heroes/i_game_hero.dart';
 

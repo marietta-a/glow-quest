@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:glow_quest/core/enums/enum.dart';
 import 'package:flame/components.dart';
 
@@ -12,6 +13,7 @@ class GameHeroModel {
   HeroType  heroType;
   String path;
   Vector2 size;
+  Color? color;
 
   GameHeroModel({
     required this.id,
@@ -20,5 +22,6 @@ class GameHeroModel {
     required this.heroType,
     required this.path,
     required this.size,
+    this.color
   });
 }

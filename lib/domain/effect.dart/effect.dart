@@ -1,22 +1,24 @@
-import 'package:flame/src/components/position_component.dart';
+import 'package:flame/components.dart';
 import 'package:glow_quest/domain/models/interface/effects/i_effect.dart';
 
-class Effect implements IEffect{
+class Effect extends IEffect{
+
   @override
-  animate(PositionComponent component) {
-    // TODO: implement animate
+  SpriteComponent applyEffects(SpriteComponent component) {
+    // TODO: implement applyEffects
     throw UnimplementedError();
   }
 
   @override
-  applySound(PositionComponent componet) {
+  SpriteComponent applySound(SpriteComponent component) {
     // TODO: implement applySound
     throw UnimplementedError();
   }
   
   @override
-  applyEffects(PositionComponent component) {
-    applySound(component);
-    animate(component);
+  SpriteComponent animate(SpriteComponent component) {
+    // TODO: implement animate
+    throw UnimplementedError();
   }
+  
 }

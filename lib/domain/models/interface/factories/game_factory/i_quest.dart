@@ -1,4 +1,4 @@
-import 'package:glow_quest/domain/models/implementation/heroes/character_stats_model.dart';
+import 'package:glow_quest/domain/heroes/character_stats_model.dart';
 
 /// The common interface for all quests.
 abstract class IQuest {
