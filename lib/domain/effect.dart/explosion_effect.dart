@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:flame/components.dart';
@@ -12,13 +11,17 @@ class ExplosionEffect extends PositionComponent {
 
   ExplosionEffect({required this.child});
 
+  
+
 
   final Timer _timer = Timer(0.2, repeat: true);
   late final Paint _paint;
   late double tChange;
 
-  @override onLoad(){
+  @override void render(Canvas canvas) {
+    canvas.save();
     
+    canvas.restore();
   }
 
   @override

@@ -1,5 +1,5 @@
 
-import 'package:glow_quest/domain/models/implementation/heroes/character_stats_model.dart';
+import 'package:glow_quest/domain/heroes/character_stats_model.dart';
 import 'package:glow_quest/domain/models/interface/factories/game_factory/i_quest.dart';
 
 /// [HydrationQuest] is a Concrete implementations of quests.

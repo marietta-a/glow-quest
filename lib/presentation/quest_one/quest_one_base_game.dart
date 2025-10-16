@@ -1,11 +1,10 @@
-import 'dart:ui';
 
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:glow_quest/core/enums/enum.dart';
-import 'package:glow_quest/domain/models/implementation/heroes/heroes/quest_one_hero.dart';
+import 'package:glow_quest/domain/heroes/heroes/quest_one_hero.dart';
 import 'package:glow_quest/domain/components/tappable_hero_component.dart';
 import 'package:glow_quest/presentation/quest_one/quest_one_base.dart';
 import 'package:glow_quest/presentation/quest_one/quest_one_base_view_model.dart';
@@ -79,7 +78,7 @@ class QuestOneBaseGame extends QuestOneBase
 
   
   Future<void> addHero() async {
-    add(QuestOneHero(
+   add(QuestOneHero(
         gameHero: viewModel.hero, 
         onSelect: onTapDown, 
         heroType: HeroType.hero, 

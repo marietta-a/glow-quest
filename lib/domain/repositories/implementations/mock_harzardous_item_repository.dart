@@ -7,20 +7,20 @@ class MockTerminatorRepository implements IGameHeroRepository{
   @override
   List<GameHeroModel> getGameHeroes() {
     return [
-      GameHeroModel(
-        id: "01", 
-        path: "heroes/harzardous_items/battery.png",
-        name: "battery", 
-        heroType: HeroType.terminator,
-        size: elongatedSize,
-      ),
-      GameHeroModel(
-        id: "02", 
-        path: "heroes/harzardous_items/broken_glass.png",
-        name: "broken glass", 
-        heroType: HeroType.terminator,
-        size: elongatedSize,
-      ),
+      // GameHeroModel(
+      //   id: "01", 
+      //   path: "heroes/harzardous_items/battery.png",
+      //   name: "battery", 
+      //   heroType: HeroType.terminator,
+      //   size: elongatedSize,
+      // ),
+      // GameHeroModel(
+      //   id: "02", 
+      //   path: "heroes/harzardous_items/broken_glass.png",
+      //   name: "broken glass", 
+      //   heroType: HeroType.terminator,
+      //   size: elongatedSize,
+      // ),
       GameHeroModel(
         id: "03", 
         path: "heroes/harzardous_items/bug_spray.png",
@@ -28,13 +28,13 @@ class MockTerminatorRepository implements IGameHeroRepository{
         heroType: HeroType.terminator,
         size: elongatedSize,
       ),
-      GameHeroModel(
-        id: "04", 
-        path: "heroes/harzardous_items/knife.png",
-        name: "knife", 
-        heroType: HeroType.terminator,
-        size: elongatedSize,
-      ),
+      // GameHeroModel(
+      //   id: "04", 
+      //   path: "heroes/harzardous_items/knife.png",
+      //   name: "knife", 
+      //   heroType: HeroType.terminator,
+      //   size: elongatedSize,
+      // ),
       GameHeroModel(
         id: "04", 
         path: "heroes/harzardous_items/poison.png",
@@ -42,13 +42,13 @@ class MockTerminatorRepository implements IGameHeroRepository{
         heroType: HeroType.terminator,
         size: elongatedSize,
       ),
-      GameHeroModel(
-        id: "04", 
-        path: "heroes/harzardous_items/razor_blade.png",
-        name: "razor_blade", 
-        heroType: HeroType.terminator,
-        size: elongatedSize,
-      ),
+      // GameHeroModel(
+      //   id: "04", 
+      //   path: "heroes/harzardous_items/razor_blade.png",
+      //   name: "razor_blade", 
+      //   heroType: HeroType.terminator,
+      //   size: elongatedSize,
+      // ),
     ];
   }
 
