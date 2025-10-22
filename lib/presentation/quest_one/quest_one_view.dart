@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
 import 'package:get/get.dart';
+import 'package:glow_quest/domain/heroes/avatars/avatar_hero.dart';
+import 'package:glow_quest/presentation/avatar_game.dart';
+import 'package:glow_quest/presentation/widgets/avatar_widget.dart';
 import 'package:google_fonts/google_fonts.dart'; // Import for custom fonts
 
 import 'package:glow_quest/presentation/quest_one/energy_boost/energy_boost_game.dart';
@@ -9,6 +12,7 @@ import 'package:glow_quest/presentation/widgets/life_bar_widget.dart';
 
 class QuestOneView extends GetView<EnergyBoostController> {
   const QuestOneView({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
@@ -24,57 +28,74 @@ class QuestOneView extends GetView<EnergyBoostController> {
         overlayBuilderMap: {
           'scoreOverlay': (context, game) {
             // NEW: Encapsulated in a styled and animated container
-            return Align(
-              alignment: Alignment.topCenter, // Centered at the top
-              child: Container(
-                margin: const EdgeInsets.only(top: 32.0),
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.5),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: Colors.cyan.withOpacity(0.7), width: 2),
-                ),
-                child: Obx(
-                  () => Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'ENERGY',
-                        style: GoogleFonts.pressStart2p( // Fun pixel font
-                          color: Colors.cyan,
-                          fontSize: 14,
-                          letterSpacing: 2,
+            return Flexible(
+              child: Row(
+                children: [
+                  Obx (
+                    () => Align(
+                      alignment: Alignment.bottomLeft,
+                      child: AvatarWidget(
+                        size: 100, 
+                        borderWidth: 1, 
+                        currentLife: controller.score.value?.toDouble() ?? 0.0,
+                        maxLife: controller.winningScore.value?.toDouble() ?? 100.0,
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.topLeft, // Centered at the top
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 8.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.5),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: Colors.cyan.withOpacity(0.7), width: 2),
+                      ),
+                      child: Obx(
+                        () => Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            // Text(
+                            //   'ENERGY',
+                            //   style: GoogleFonts.pressStart2p( // Fun pixel font
+                            //     color: Colors.cyan,
+                            //     fontSize: 14,
+                            //     letterSpacing: 2,
+                            //   ),
+                            // ),
+                            // const SizedBox(height: 5),
+                            // Animated score text
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                LifeBarWidget(
+                                    currentLife: controller.score.value?.toDouble() ?? 0.0,
+                                    maxLife: controller.winningScore.value?.toDouble() ?? 100.0,
+                                    width: lifeBarWidth,
+                                ),
+                                const SizedBox(width: 5),
+                                // This widget animates the text change with a nice count-up/down effect
+                                AnimatedCounter(
+                                  value: controller.score.value ?? 0,
+                                  style: GoogleFonts.bungee( // Bold, fun font
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    shadows: [
+                                      const Shadow(blurRadius: 10, color: Colors.cyan),
+                                      const Shadow(blurRadius: 20, color: Colors.cyanAccent),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
-                      const SizedBox(height: 8),
-                      // Animated score text
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                           LifeBarWidget(
-                              currentLife: controller.score.value?.toDouble() ?? 0.0,
-                              maxLife: controller.winningScore.value?.toDouble() ?? 100.0,
-                              width: lifeBarWidth,
-                           ),
-                           const SizedBox(width: 16),
-                           // This widget animates the text change with a nice count-up/down effect
-                           AnimatedCounter(
-                             value: controller.score.value ?? 0,
-                             style: GoogleFonts.bungee( // Bold, fun font
-                               fontSize: 28,
-                               color: Colors.white,
-                               shadows: [
-                                 const Shadow(blurRadius: 10, color: Colors.cyan),
-                                 const Shadow(blurRadius: 20, color: Colors.cyanAccent),
-                               ],
-                             ),
-                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+                    ),
+                  )
+                ],
+              )
             );
           },
           'gameWonOverlay': (context, game) {
