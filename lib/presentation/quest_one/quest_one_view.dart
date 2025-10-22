@@ -106,6 +106,7 @@ class QuestOneView extends GetView<EnergyBoostController> {
               iconColor: Colors.yellowAccent,
               buttonText: 'Continue Journey',
               onPressed: () {
+                Navigator.popAndPushNamed(context, '/home/quest_one/energy_boost');
                 Get.toNamed("/home/quest_one");
               },
             );
