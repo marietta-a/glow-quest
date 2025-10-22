@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:glow_quest/presentation/quest_one/quest_one_view.dart'; // Make sure this view exists
+import 'package:get/get.dart'; // Make sure this view exists
 
 class SubQuestSelectionView extends StatelessWidget {
   final int questId;
@@ -30,8 +29,7 @@ class SubQuestSelectionView extends StatelessWidget {
                 title: 'Energy Boost',
                 icon: Icons.flash_on,
                 onTap: () {
-                  // Navigate to your Energy Boost game view
-                  Get.to(() => const QuestOneView()); 
+                  Get.toNamed("/home/quest_one/energy_boost");
                 },
               ),
               _buildSubQuestCard(
