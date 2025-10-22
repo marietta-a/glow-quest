@@ -5,9 +5,7 @@ import 'package:flame/geometry.dart'; // We need this for LineSegment
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
-import 'package:glow_quest/components/avatar_hero_component.dart';
 import 'package:glow_quest/core/enums/enum.dart';
-import 'package:glow_quest/domain/heroes/avatars/avatar_hero.dart';
 import 'package:glow_quest/domain/heroes/heroes/quest_one_hero.dart';
 import 'package:glow_quest/components/tappable_hero_component.dart';
 import 'package:glow_quest/presentation/quest_one/quest_one_base.dart';
@@ -30,19 +28,18 @@ class QuestOneBaseGame extends QuestOneBase {
     super.onLoad();
     viewModel.winningScore.value = winningValue;
     _timer.onTick = spawnObject;
-    // addAvatar();
-    // Assumes you have a 'background.png' in 'assets/images/'
-    // final background = SpriteComponent()
-    //   ..sprite = await Sprite.load('background.png')
-    //   ..size = canvasSize
-    //   ..priority = -1;
-    // add(background);
+
+    final background = SpriteComponent()
+      ..sprite = await Sprite.load('backgrounds/quest_one_background.jpg')
+      ..size = canvasSize
+      ..priority = -1;
+    add(background);
   }
   
   @override
   void onDragStart(DragStartEvent event) {
     super.onDragStart(event);
-    _currentSlice = SliceTrail(color: Colors.white, strokeWidth: 5.0);
+    _currentSlice = SliceTrail();
     add(_currentSlice!);
     _currentSlice!.addPoint(event.localPosition);
     _lastDragPosition = event.localPosition;

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
 import 'package:get/get.dart';
-import 'package:glow_quest/domain/heroes/avatars/avatar_hero.dart';
-import 'package:glow_quest/presentation/avatar_game.dart';
 import 'package:glow_quest/presentation/widgets/avatar_widget.dart';
 import 'package:google_fonts/google_fonts.dart'; // Import for custom fonts
 
@@ -106,6 +104,7 @@ class QuestOneView extends GetView<EnergyBoostController> {
               iconColor: Colors.yellowAccent,
               buttonText: 'Continue Journey',
               onPressed: () {
+                Navigator.popAndPushNamed(context, '/home/quest_one/energy_boost');
                 Get.toNamed("/home/quest_one");
               },
             );
@@ -118,9 +117,7 @@ class QuestOneView extends GetView<EnergyBoostController> {
               iconColor: Colors.redAccent,
               buttonText: 'Try Again',
               onPressed: () {
-                // To properly restart, you should have a method in your controller/game
-                // For now, we'll just go back.
-                Get.back();
+                Navigator.pushReplacementNamed(context, '/home/quest_one/energy_boost');
               },
             );
           },
