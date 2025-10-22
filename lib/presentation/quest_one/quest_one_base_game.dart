@@ -101,19 +101,86 @@ class QuestOneBaseGame extends QuestOneBase {
   @override
   Color backgroundColor() => const Color(0xFF1E1E2E); 
 
-  @override
+   @override
   void update(double dt) {
-    super.update(dt);
-    _timer.update(dt); 
+    // This now correctly calls the `update` on each hero, which handles its movement.
+    super.update(dt); 
+    _timer.update(dt);
 
-    allGameHeroes = children.whereType<TappableHeroComponent>()
-                    .map((b) => updateLocation(dt, b))
-                    .toList();
+    // --- NEW REMOVAL LOGIC ---
+    // Replace the old logic that used `updateLocation`.
+    final heroesOnScreen = children.whereType<QuestOneHero>().toList();
+    allGameHeroes = heroesOnScreen; // Keep the list of heroes fresh.
 
-    removeHeroesInactiveHeroes();
-  
+    final List<QuestOneHero> heroesToRemove = [];
+
+    for (final hero in heroesOnScreen) {
+      // Remove a hero if it has fallen back down below the screen.
+      // We only check this after it has had a chance to move up (y < size.y).
+      if (hero.position.y > size.y + hero.size.y) {
+        heroesToRemove.add(hero);
+        // If a good hero was missed, decrease the score.
+        if (hero.heroType == HeroType.hero) {
+          viewModel.decreaseScore(1); 
+        }
+      }
+    }
+
+    if (heroesToRemove.isNotEmpty) {
+      removeAll(heroesToRemove);
+    }
+    // --- END NEW REMOVAL LOGIC ---
+
     checkGameState();
   }
+  
+  // --- UPDATED SPAWNER METHODS ---
+  Future<void> addHero() async {
+    add(
+      QuestOneHero(
+        gameHero: viewModel.hero,
+        onSelect: onTapDown,
+        heroType: HeroType.hero,
+        velocity: getRandomVelocity(), // Give it a launch velocity!
+        gravity: gravity,             // Pass the game's gravity.
+      )
+      ..position = getRandomPosition() // Set its starting position.
+      ..size = viewModel.hero.size,
+    );
+  }
+
+  Future<void> addDistractor() async {
+    if (heroes.length >= 2) {
+      add(
+        QuestOneHero(
+          gameHero: viewModel.distractor,
+          onSelect: onTapDown,
+          heroType: HeroType.distractor,
+          velocity: getRandomVelocity(), // Give it a launch velocity!
+          gravity: gravity,             // Pass the game's gravity.
+        )
+        ..position = getRandomPosition() // Set its starting position.
+        ..size = viewModel.hero.size,
+      );
+    }
+  }
+
+  Future<void> addTerminator() async {
+    if (distractors.length >= 2) {
+      add(
+        QuestOneHero(
+          gameHero: viewModel.terminator,
+          onSelect: onTapDown,
+          heroType: HeroType.terminator,
+          velocity: getRandomVelocity(), // Give it a launch velocity!
+          gravity: gravity,             // Pass the game's gravity.
+        )
+        ..position = getRandomPosition() // Set its starting position.
+        ..size = viewModel.hero.size,
+      );
+    }
+  }
+  
 
   @override
   int get winningValue => 100;
@@ -145,42 +212,6 @@ class QuestOneBaseGame extends QuestOneBase {
     await addTerminator();
   }
   
-
-  
-  Future<void> addHero() async {
-   add(QuestOneHero(
-        gameHero: viewModel.hero, 
-        onSelect: onTapDown, 
-        heroType: HeroType.hero, 
-      )
-      ..size = viewModel.hero.size
-    );
-  }
-  
-  Future<void> addDistractor() async {
-    if(heroes.length >= 2){
-      add(QuestOneHero(
-          gameHero: viewModel.distractor, 
-          onSelect: onTapDown, 
-          heroType: HeroType.distractor, 
-        )
-        ..size = viewModel.hero.size
-      );
-    }
-  }
-  
-  Future<void> addTerminator() async {
-    if(distractors.length >= 2){
-      add(QuestOneHero(
-          gameHero: viewModel.terminator, 
-          onSelect: onTapDown, 
-          heroType: HeroType.terminator, 
-        )
-        ..size = viewModel.hero.size
-        ..anchor = Anchor.center
-      );
-    }
-  }
 
 
   // --- Public methods for components to call ---

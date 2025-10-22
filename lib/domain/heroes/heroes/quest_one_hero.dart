@@ -16,10 +16,15 @@ class QuestOneHero extends TappableHeroComponent with HasGameReference<QuestOneB
     required super.gameHero,
     required super.heroType,
     required super.onSelect,
+    required this.velocity,
+    required this.gravity,
   });
 
   // Renamed for clarity: this flag now handles both taps and slices.
-  bool _isBeingDestroyed = false;
+  bool _isBeingDestroyed = false; /// Each hero now has its own velocity, set on creation.
+  Vector2 velocity;
+  /// The gravity that pulls this hero down.
+  final Vector2 gravity;
 
   // --- NEW: For the glowing and pulsing effect ---
   late final Paint _glowPaint;
@@ -27,6 +32,7 @@ class QuestOneHero extends TappableHeroComponent with HasGameReference<QuestOneB
   static const double _pulseSpeed = 2.5;
   static const double _minBlur = 8.0;
   static const double _maxBlur = 16.0;
+  late Vector2 maxVelocity = Vector2.all(0);
   
   @override
   Future<void> onLoad() async {
@@ -57,6 +63,25 @@ class QuestOneHero extends TappableHeroComponent with HasGameReference<QuestOneB
   void update(double dt) {
     super.update(dt);
     if (_isBeingDestroyed) return;
+    final halfScreenY = game.size.y / 3.5;
+
+    maxVelocity = maxVelocity.y > velocity.y ? maxVelocity : velocity;
+
+    // Check if the hero has risen above the halfway point AND is still moving up.
+    if (position.y <= halfScreenY && velocity.y < 0) {
+      // Stop its upward momentum instantly.
+      // Gravity will take over from this point, making it fall.
+      // velocity.y = 0;
+      velocity.y = maxVelocity.y;
+    }
+    // --- END OF NEW LOGIC ---
+
+    // Apply gravity to the velocity. This will now make it fall from its peak.
+    velocity.y += gravity.y * dt;
+
+    // Apply the final velocity to the hero's position.
+    position += velocity * dt;
+    
 
     _pulseTimer += dt * _pulseSpeed;
     final pulseValue = (sin(_pulseTimer) + 1) / 2;
