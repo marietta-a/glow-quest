@@ -62,9 +62,7 @@ class QuestOneView extends GetView<EnergyBoostController> {
                     const SizedBox(height: 24),
                     ElevatedButton(
                       onPressed: () {
-                        // Logic to restart the game
-                        // For example, you could navigate away and back, or create a method in the ViewModel
-                        Get.back(); // Simple example: go back
+                        Get.toNamed("/home/quest_one"); // go to quest one dashboard
                       },
                       child: const Text('Main Menu'),
                     ),
