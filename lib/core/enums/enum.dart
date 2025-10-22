@@ -37,3 +37,8 @@ enum AvatarState {
   natural,
   glowing
 }
+
+enum AvatarType {
+  blackWoman,
+  whiteWoman,
+}

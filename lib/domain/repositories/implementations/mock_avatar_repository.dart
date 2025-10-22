@@ -9,7 +9,7 @@ class MockAvatarRepository implements IGameHeroRepository {
     return[
       GameHeroModel(
         id: "01", 
-        path: "assets/heroes/avatars/woman/black/blemish_face.png",
+        path: "heroes/avatars/woman/black/blemish_face.png",
         name: "blemish face", 
         heroType: HeroType.avatar,
         size: avatarSize,
@@ -17,7 +17,7 @@ class MockAvatarRepository implements IGameHeroRepository {
 
       GameHeroModel(
         id: "02", 
-        path: "assets/heroes/avatars/woman/black/glowing_face.png",
+        path: "heroes/avatars/woman/black/glowing_face.png",
         name: "glowing face", 
         heroType: HeroType.avatar,
         size: avatarSize,
@@ -25,7 +25,7 @@ class MockAvatarRepository implements IGameHeroRepository {
       
       GameHeroModel(
         id: "03", 
-        path: "assets/heroes/avatars/woman/black/healthy_face.png",
+        path: "heroes/avatars/woman/black/healthy_face.png",
         name: "healthy face", 
         heroType: HeroType.avatar,
         size: avatarSize,
@@ -33,7 +33,7 @@ class MockAvatarRepository implements IGameHeroRepository {
       
       GameHeroModel(
         id: "04", 
-        path: "assets/heroes/avatars/woman/black/neutral_face.png",
+        path: "heroes/avatars/woman/black/neutral_face.png",
         name: "neutral face", 
         heroType: HeroType.avatar,
         size: avatarSize,
@@ -41,7 +41,7 @@ class MockAvatarRepository implements IGameHeroRepository {
       
       GameHeroModel(
         id: "05", 
-        path: "assets/heroes/avatars/woman/black/sick_face.png",
+        path: "heroes/avatars/woman/black/sick_face.png",
         name: "sick face", 
         heroType: HeroType.avatar,
         size: avatarSize,

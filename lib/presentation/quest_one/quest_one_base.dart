@@ -5,7 +5,7 @@ import 'package:flame/game.dart';
 import 'package:glow_quest/core/enums/enum.dart';
 import 'package:glow_quest/components/tappable_hero_component.dart';
 
-abstract class QuestOneBase extends FlameGame with TapCallbacks 
+abstract class QuestOneBase extends FlameGame with TapCallbacks, DragCallbacks 
 {
   // --- Common Physics Properties ---
   ///Initial downward speed

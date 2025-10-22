@@ -12,6 +12,7 @@ dependencies:
   get: ^4.7.2
   flame: ^1.32.0
   audioplayers: ^6.5.1
+  google_fonts: ^6.3.2
 
 dev_dependencies:
   flutter_test:
@@ -25,3 +26,5 @@ flutter:
     - assets/images/heroes/foods/energy-boosters/
     - assets/images/heroes/distractors/
     - assets/images/heroes/harzardous_items/
+    - assets/images/heroes/avatars/woman/black/
+    - assets/images/heroes/avatars/woman/white/
