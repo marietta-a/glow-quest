@@ -271,16 +271,4 @@ class QuestOneBaseGame extends QuestOneBase {
     checkForGameWon();
   }
   
-  // void addAvatar() {
-  //   final hero = AvatarHero();
-  //   hero.state = AvatarState.sick;
-  //   hero.type = AvatarType.blackWoman;
-  //   add(
-  //     AvatartHeroComponent(
-  //       gameHero: hero,
-  //     )
-  //     ..anchor = Anchor.bottomLeft
-  //     ..position = Vector2(60, 60)
-  //   );
-  // }
 }

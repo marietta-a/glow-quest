@@ -17,8 +17,8 @@ class AvatarHeroComponent extends SpriteComponent with TapCallbacks {
   // --- Configuration ---
   // Tweak these values to change the avatar's "feel"
   final double _idleHoverHeight = 5.0;
-  final double _jumpHeight = 20.0;
-  final double _jumpDuration = 0.3;
+  // final double _jumpHeight = 20.0;
+  // final double _jumpDuration = 0.3;
   // --- End Configuration ---
   
   late final Effect _idleEffect;
@@ -114,20 +114,20 @@ class AvatarHeroComponent extends SpriteComponent with TapCallbacks {
     _idleEffect.pause();
 
     // Create the happy jump effect
-    final jumpEffect = SequenceEffect(
-      [
-        // Squash down and jump up
-          MoveByEffect(Vector2(0, -_jumpHeight), EffectController(duration: _jumpDuration, curve: Curves.easeOut)),
-        // Fall down and stretch back to normal
+    // final jumpEffect = SequenceEffect(
+    //   [
+    //     // Squash down and jump up
+    //       MoveByEffect(Vector2(0, -_jumpHeight), EffectController(duration: _jumpDuration, curve: Curves.easeOut)),
+    //     // Fall down and stretch back to normal
         
-         MoveByEffect(Vector2(0, _jumpHeight), EffectController(duration: _jumpDuration * 0.8, curve: Curves.easeIn)),
-      ],
-      onComplete: () {
-        // When the jump is finished
-        _isJumping = false;
-        _idleEffect.resume(); // Resume idling
-      },
-    );
+    //      MoveByEffect(Vector2(0, _jumpHeight), EffectController(duration: _jumpDuration * 0.8, curve: Curves.easeIn)),
+    //   ],
+    //   onComplete: () {
+    //     // When the jump is finished
+    //     _isJumping = false;
+    //     _idleEffect.resume(); // Resume idling
+    //   },
+    // );
 
     // add(jumpEffect);
     _spawnCelebrationParticles();

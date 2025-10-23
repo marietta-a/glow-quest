@@ -15,13 +15,13 @@ class MockDistractorItemRepository implements IGameHeroRepository {
       //   heroType: HeroType.distractor,
       //   size: roundedSize,
       // ),
-      GameHeroModel(
-        id: "02", 
-        path: "heroes/distractors/cheese_burger.png",
-        name: "cheese burger", 
-        heroType: HeroType.distractor,
-        size: roundedSize,
-      ),
+      // GameHeroModel(
+      //   id: "02", 
+      //   path: "heroes/distractors/cheese_burger.png",
+      //   name: "cheese burger", 
+      //   heroType: HeroType.distractor,
+      //   size: roundedSize,
+      // ),
       GameHeroModel(
         id: "03", 
         path: "heroes/distractors/cupcake.png",

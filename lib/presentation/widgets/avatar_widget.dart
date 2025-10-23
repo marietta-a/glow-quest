@@ -45,7 +45,6 @@ class _AvatarWidgetState extends State<AvatarWidget>{
     final healthyHero = AvatarHero()..state = AvatarState.healthy;
     final sickHero = AvatarHero()..state = AvatarState.sick;
     final naturalHero = AvatarHero()..state = AvatarState.natural;
-    print(widget.currentLife);
 
     return  switch(widget.currentLife){
       (double life) when life < 50 => Container(
