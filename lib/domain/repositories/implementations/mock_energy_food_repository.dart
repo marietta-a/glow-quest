@@ -46,14 +46,14 @@ class MockEnergyFoodRepository implements IGameHeroRepository {
       //   heroType: HeroType.hero,
       //   size: roundedSize,
       // ),
-      GameHeroModel(
-        id: "06", 
-        path: "heroes/foods/energy-boosters/egg.png",
-        name: "egg", 
-        heroType: HeroType.hero,
-        size: elongatedSize,
+      // GameHeroModel(
+      //   id: "06", 
+      //   path: "heroes/foods/energy-boosters/egg.png",
+      //   name: "egg", 
+      //   heroType: HeroType.hero,
+      //   size: elongatedSize,
         
-      ),
+      // ),
       // GameHeroModel(
       //   id: "07", 
       //   path: "heroes/foods/energy-boosters/grape.png",

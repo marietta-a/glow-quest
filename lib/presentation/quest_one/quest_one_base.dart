@@ -113,10 +113,21 @@ abstract class QuestOneBase extends FlameGame with TapCallbacks, DragCallbacks
   ///[getRandomPosition] Returns a random position within the allowed boundaries for the game.
   /// Useful for spawning objects or characters at unpredictable locations.
   /// Ensures the position is valid and does not overlap restricted areas.
-  Vector2 getRandomPosition(){
-    final Random random = Random();
+  Vector2 getRandomPosition() {
+    final random = Random();
     final randomX = margin + (random.nextDouble() * getSpawnableWidth());
-    return Vector2(randomX, 0);
+    // Spawn below the bottom of the screen (e.g., 50 pixels below).
+    return Vector2(randomX, size.y + 50); 
+  }
+
+  /// [getRandomVelocity] Generates a random upward velocity for launching heroes.
+  Vector2 getRandomVelocity() {
+    final random = Random();
+    // A random horizontal velocity (can go left or right).
+    final double x = random.nextDouble() * 200 - 100; 
+    // A strong initial upward velocity.
+    final double y = -400 - random.nextDouble() * 200; 
+    return Vector2(x, y);
   }
 
 }

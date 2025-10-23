@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
 import 'package:get/get.dart';
 import 'package:glow_quest/presentation/widgets/avatar_widget.dart';
+import 'package:glow_quest/presentation/widgets/hearts_widget.dart';
+import 'package:glow_quest/presentation/widgets/score_widget.dart';
 import 'package:google_fonts/google_fonts.dart'; // Import for custom fonts
 
 import 'package:glow_quest/presentation/quest_one/energy_boost/energy_boost_game.dart';
 import 'package:glow_quest/presentation/quest_one/energy_boost/energy_boost_controller.dart';
-import 'package:glow_quest/presentation/widgets/life_bar_widget.dart';
 
 class QuestOneView extends GetView<EnergyBoostController> {
   const QuestOneView({super.key});
@@ -16,7 +17,7 @@ class QuestOneView extends GetView<EnergyBoostController> {
   Widget build(BuildContext context) {
     // We create the instance of our game here.
     final game = Get.put(EnergyBoostGame()); // Using Get.put to manage the game instance
-    final lifeBarWidth = MediaQuery.of(context).size.width / 4; // Made the bar a bit wider for visibility
+    final lifeBarWidth = MediaQuery.of(context).size.width / 3; // Made the bar a bit wider for visibility
 
     return Scaffold(
       // The GameWidget is the bridge between Flutter and Flame.
@@ -54,39 +55,22 @@ class QuestOneView extends GetView<EnergyBoostController> {
                         () => Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            // Text(
-                            //   'ENERGY',
-                            //   style: GoogleFonts.pressStart2p( // Fun pixel font
-                            //     color: Colors.cyan,
-                            //     fontSize: 14,
-                            //     letterSpacing: 2,
-                            //   ),
-                            // ),
-                            // const SizedBox(height: 5),
-                            // Animated score text
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                LifeBarWidget(
-                                    currentLife: controller.score.value?.toDouble() ?? 0.0,
-                                    maxLife: controller.winningScore.value?.toDouble() ?? 100.0,
-                                    width: lifeBarWidth,
-                                ),
-                                const SizedBox(width: 5),
-                                // This widget animates the text change with a nice count-up/down effect
-                                AnimatedCounter(
-                                  value: controller.score.value ?? 0,
-                                  style: GoogleFonts.bungee( // Bold, fun font
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    shadows: [
-                                      const Shadow(blurRadius: 10, color: Colors.cyan),
-                                      const Shadow(blurRadius: 20, color: Colors.cyanAccent),
-                                    ],
+                            Center(
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  ScoreWidget(
+                                    score: controller.score.value ?? 0,
+                                    scoreIconAsset: "assets/images/heroes/foods/energy-boosters/berries.png",
+                                    height: 50,
                                   ),
-                                ),
-                              ],
-                            ),
+                                  
+                                  SizedBox(width: lifeBarWidth,),
+
+                                  HeartsWidget(livesLost:  controller.livesLost.value ?? 0),
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       ),
@@ -202,35 +186,6 @@ class QuestOneView extends GetView<EnergyBoostController> {
           ),
         ),
       ),
-    );
-  }
-}
-
-/// A helper widget to animate number changes smoothly.
-class AnimatedCounter extends StatelessWidget {
-  final int value;
-  final TextStyle? style;
-  final Duration duration;
-
-  const AnimatedCounter({
-    super.key,
-    required this.value,
-    this.style,
-    this.duration = const Duration(milliseconds: 300),
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    // This widget handles the animation from an old value to a new one
-    return TweenAnimationBuilder<int>(
-      tween: IntTween(begin: value, end: value), // The key is that Obx rebuilds this with a new `end` value
-      duration: duration,
-      builder: (context, animatedValue, child) {
-        return Text(
-          animatedValue.toString(),
-          style: style,
-        );
-      },
     );
   }
 }
