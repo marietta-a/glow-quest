@@ -121,7 +121,8 @@ class QuestOneBaseGame extends QuestOneBase {
         heroesToRemove.add(hero);
         // If a good hero was missed, decrease the score.
         if (hero.heroType == HeroType.hero) {
-          viewModel.decreaseScore(1); 
+          // viewModel.decreaseScore(1); 
+          viewModel.incrementLifeLost();
         }
       }
     }
@@ -200,7 +201,9 @@ class QuestOneBaseGame extends QuestOneBase {
 
   TappableHeroComponent decreaseScoreForLostHero(TappableHeroComponent hero){
     if(hero.heroType == HeroType.hero){
-      viewModel.decreaseScore(1);
+      // viewModel.decreaseScore(1);
+      viewModel.incrementLifeLost();
+      print(viewModel.livesLost);
     }
     return hero;
   }
@@ -208,7 +211,7 @@ class QuestOneBaseGame extends QuestOneBase {
   
   Future<void> spawnObject() async {
     await addHero();
-    await addDistractor();
+    // await addDistractor();
     await addTerminator();
   }
   
@@ -255,7 +258,7 @@ class QuestOneBaseGame extends QuestOneBase {
   }
   
   void checkForGameOver() {
-    if (viewModel.score.value! < 0  ) {
+    if (viewModel.score.value! < 0  || viewModel.livesLost.value == viewModel.maxLives) {
       endGame(viewModel.gameOverMessage.value ?? "Game Over");
     }
   }

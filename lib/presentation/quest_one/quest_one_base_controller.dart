@@ -25,6 +25,8 @@ abstract class QuestOneBaseController extends GetxController{
 
   // --- Reactive State Variables (for Flutter UI) ---
   final score = Rxn<int>();
+  final livesLost = Rxn<int>();
+  final maxLives = 4;
   final winningScore = Rxn<int>();
 
   /// [gameOverMessage] is null when the game is ongoing, and contains a message when the game is over
@@ -70,6 +72,13 @@ abstract class QuestOneBaseController extends GetxController{
       score.value = score.value! - penalty;
     } else {
       score.value = 0 - penalty;
+    }
+  }
+  void incrementLifeLost() {
+    if (livesLost.value != null) {
+      livesLost.value = livesLost.value!  + 1;
+    } else {
+      livesLost.value = 0 + 1;
     }
   }
 
